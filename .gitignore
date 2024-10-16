@@ -1,0 +1,6 @@
+
+lecture_jpa/.idea/
+
+lecture_jpa/target/classes/META-INF/
+
+*.class
