@@ -8,7 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class Ch5Main2조회 {  //등록
+public class Ch5Main3양방향연관관계 {  //등록
     public static void main(String[] args) {
         //이때 initilizer에 team도 같이 데이터 넣자.
 
@@ -18,13 +18,15 @@ public class Ch5Main2조회 {  //등록
         EntityTransaction tx = em.getTransaction();//트랜잭션 획득!
         try{
             tx.begin();
+            Member member=em.find(Member.class, "mem1");
+            System.out.println("member의 원래 팀 : " + member.getTeam().getName());
+            Team newTeam=new Team();
+            newTeam.setName("team2");
+            em.persist(newTeam);    //변경감지 일어날려면 newTeam도 영속이어야..
 
-            Member findMember = em.find(Member.class, "mem1"); // Team도 한번에 조회.. 상황에 따라 장단점
-            System.out.println(findMember);
+            member.setTeam(newTeam);
+            System.out.println("member의 원래 팀 : " + member.getTeam().getName());
 
-            Team findTeam=em.find(Team.class,1);
-            Team team=findMember.getTeam();
-            System.out.println("findTeam===team : " + (findTeam==team));
 
             tx.commit();
         }catch (Exception e){

@@ -1,20 +1,24 @@
 package com.shop.jpa.entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Embeddable
+@Getter
+@Setter
 public class Delivery {
+    //private OrderItem   uml에서 이거 지우자.  값 타입으로 써야함
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private OrderItem orderItem;
+    //UML도  delivery 값 타입으로 화게 OrderItem 삭제하고... 뭐 이것저것 해보자..
 
-    private DeliveryStatus deliveryStatus;
-
+    //목표 : JPA 매핑 끝까지
+    private  DeliveryStatus deliveryStatus;
     private LocalDate arriveDate;
 
 }
+
+
+

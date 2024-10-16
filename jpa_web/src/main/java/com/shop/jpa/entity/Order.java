@@ -34,10 +34,8 @@ public class Order {
     private int totalPrice;
     private LocalDate orderDate;
 
-    private String city;
-    private String street;
-    private String zipcode;
-    private String detail;
+    @Embedded
+    private Address address;
 
 
 

@@ -1,6 +1,8 @@
 package etc;
 
+import entity.Authority;
 import entity.Member;
+import entity.Team;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -19,10 +21,14 @@ public class JPAInitializer {
         System.out.println("-----------------------------------------------------------------------------");
         try{
             tx.begin();
+            Team team=new Team();
+            team.setName("team1");
+            em.persist(team);
             Member member=new Member("mem1","창희");
-            em.persist(member);   //em에  등록   DB에서 조회가능.
+            member.setTeam(team);
 
-            em.persist(member);
+
+            em.persist(member);   //em에  등록   DB에서 조회가능.
             tx.commit();
         }catch (Exception e){
             e.printStackTrace();

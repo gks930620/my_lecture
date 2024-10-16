@@ -22,6 +22,8 @@ public class OrderItem {
     private int onePrice;
     private int count;
 
+    private Delivery delivery;
+
 
     public void setOrder(Order order){
         if(this.order!=null ){

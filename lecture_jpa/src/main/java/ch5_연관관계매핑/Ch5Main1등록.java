@@ -1,6 +1,5 @@
 package ch5_연관관계매핑;
 
-import entity.Authority;
 import entity.Member;
 import entity.Team;
 import etc.JPAInitializer;
@@ -9,10 +8,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class Ch5Main1 {  //등록
+public class Ch5Main1등록 {  //등록
     public static void main(String[] args) {
         //연관관계 매핑까지 하고 실습예제랑 같이 commit하자.
-        //참고로 다양한 연관관계에서 카테고리 item은 다대다가 아니라 다대일로 할거임.
+        // 실습코드도 다대일 기준으로만
+        // 다양한 연관관계에서 카테고리 item은 다대다가 아니라 다대일로 할거임.
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         JPAInitializer.firstInsertSetting(emf);

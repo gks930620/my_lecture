@@ -12,11 +12,12 @@ public class SettingCheckController {
     @PersistenceUnit
     private EntityManagerFactory emf;
 
+
     @RequestMapping(value = {"/test"})
-    public String home(Model model){
+    public String home(Model model) {
         EntityManager em = emf.createEntityManager();
         TestEntity test = em.find(TestEntity.class, "test");
-        model.addAttribute("test",test);
+        model.addAttribute("test", test);
         em.close();
         return "test";
     }
