@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Embeddable
 @Getter
-@Setter
+//@Setter 값타입은 수정말고 늘 새로운값으로 생성하도록.
 public class Address {
 
     private String city;

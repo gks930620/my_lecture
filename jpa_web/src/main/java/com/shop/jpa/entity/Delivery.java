@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Embeddable
 @Getter
-@Setter
+//@Setter   //값 타입은 언제나 new
 public class Delivery {
     //private OrderItem   uml에서 이거 지우자.  값 타입으로 써야함
 

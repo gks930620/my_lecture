@@ -11,9 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Team {
-
-
+public class Team  extends  BaseEnntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

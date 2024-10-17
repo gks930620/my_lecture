@@ -35,7 +35,7 @@ public class Order {
     private LocalDate orderDate;
 
     @Embedded
-    private Address address;
+    private Address address;  //멤버의 address 그냥쓸건지,  아니면 배달주소는 따로할건지..
 
 
 

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Member {
+public class Member  extends  BaseEnntity{
     @Id
     @Column(name = "member_id")
     private String id;
@@ -27,6 +27,8 @@ public class Member {
     private String name;
     @Deprecated
     private String grade;
+
+
     @Enumerated(EnumType.STRING)
     private  Authority authority;
     LocalDateTime createDate;

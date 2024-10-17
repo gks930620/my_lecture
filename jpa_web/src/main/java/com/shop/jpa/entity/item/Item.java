@@ -1,5 +1,6 @@
-package com.shop.jpa.entity;
+package com.shop.jpa.entity.item;
 
+import com.shop.jpa.entity.Category;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
 public class Item {
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "item_id")

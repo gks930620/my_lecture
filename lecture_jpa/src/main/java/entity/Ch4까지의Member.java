@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.time.LocalDateTime;
 
-@Entity
+//@Entity
 //@Table(name = "기본 Entity이름" , schema = "스키마" ,
 //        uniqueConstraints = {
 //            @UniqueConstraint(name ="name_lengh2" , columnNames ={"name"})

@@ -1,5 +1,6 @@
 package com.shop.jpa.entity;
 
+import com.shop.jpa.entity.item.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -22,6 +23,7 @@ public class OrderItem {
     private int onePrice;
     private int count;
 
+    @Embedded
     private Delivery delivery;
 
 
