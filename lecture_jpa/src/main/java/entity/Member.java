@@ -34,6 +34,10 @@ public class Member  extends  BaseEnntity{
     LocalDateTime createDate;
 
 
+    @Embedded
+    private Address address;
+
+
     public void setTeam(Team team){  //연관관계 편의 메소드
         if(this.team!=null){
             this.team.getMembers().remove(this);
