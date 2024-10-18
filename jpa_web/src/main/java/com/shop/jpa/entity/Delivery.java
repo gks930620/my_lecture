@@ -1,7 +1,9 @@
 package com.shop.jpa.entity;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -9,6 +11,8 @@ import java.time.LocalDate;
 @Embeddable
 @Getter
 //@Setter   //값 타입은 언제나 new
+@NoArgsConstructor
+@AllArgsConstructor
 public class Delivery {
     //private OrderItem   uml에서 이거 지우자.  값 타입으로 써야함
 

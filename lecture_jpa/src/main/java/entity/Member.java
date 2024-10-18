@@ -18,7 +18,7 @@ public class Member  extends  BaseEnntity{
     @Column(name = "member_id")
     private String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)   //즉시로딩할 때 fetch추가 , 지연로딩=LAZY
     @JoinColumn(name = "team_id")
     private Team team;
 

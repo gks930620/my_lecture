@@ -17,8 +17,7 @@ public class Ch8Main1 {
         EntityTransaction tx = em.getTransaction();//트랜잭션 획득!
         try{
             tx.begin();
-            //값 타입 좀 짚고 넘어가자.    여기서는 컬렉션까지, jpa_web에서는 컬렉션X
-            // 여기서만 설명하고 실습코드 X  이것만하고 값타입으로 커밋한번하자
+          
             Member member1=new Member();
             member1.setId("m1");
             member1.setName("민지");
