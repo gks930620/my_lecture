@@ -3,12 +3,11 @@ package ch10_jpql;
 import entity.Member;
 import entity.Team;
 import etc.JPAInitializer;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
-public class Ch10Mian1 {
+import java.util.List;
+
+public class Ch10Main1 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         JPAInitializer.firstInsertSetting(emf);
@@ -24,8 +23,10 @@ public class Ch10Mian1 {
             persistTeamAndMembers(aespa,"에스파",em);
             em.flush();
             em.clear();  // 엔티티매니저 초기화
-            System.out.println("----------------------------------------------");
-            
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+            TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.name=:name", Member.class);//엔티티대상쿼리, 대소문자
+            Member 민지 = query.setParameter("name", "민지").getSingleResult();   //파라미터는 쿼리 직접X. 파라미터 바인딩 방식으로.
+            System.out.println(민지);
 
 
             tx.commit();

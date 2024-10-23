@@ -17,7 +17,7 @@
             <property name="hibernate.use_sql_comments"  value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create" />
 <!--            <property name="hibernate.id.new_generator_mapping" value="true"/>  기본키생성전략사용을 위한 옵션-->
-
+            <property name="hibernate.default_batch_fetch_size" value="20" />
         </properties>
     </persistence-unit>
 

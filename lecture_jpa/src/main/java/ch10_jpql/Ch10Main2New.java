@@ -1,13 +1,16 @@
-package ch9_프록시;
+package ch10_jpql;
 
+import dto.MemberDTO;
 import entity.Member;
 import entity.Team;
 import etc.JPAInitializer;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Ch9Mian4N_1 {
+public class Ch10Main2New {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         JPAInitializer.firstInsertSetting(emf);
@@ -23,30 +26,15 @@ public class Ch9Mian4N_1 {
             persistTeamAndMembers(aespa,"에스파",em);
             em.flush();
             em.clear();  // 엔티티매니저 초기화
-            System.out.println("----------------------------------------------");
-            // team에 member가 여러명 있는 상황. member는 팀 1개
-            // member에서 team조회하는건 문제없음
-            // team 조회시 연관된 member들 전부 조회하는 경우
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
+            List<Member> members = em.createQuery("SELECT m.id,m.name FROM Member m ", Member.class).getResultList();
+            List<MemberDTO> collect = members.stream().map(Member::toMemberDTO).toList();  //17부터
+            System.out.println(collect);
 
-            //즉시로딩 . Eager
-            //Team findTeam = em.find(Team.class, 2L);  //사실 JPA가 조인함.
-
-            List<Team> findTeams = em.createQuery("select t From Team t", Team.class).getResultList();
-            //jpql로 team을 전부찾음. '어? eager잖아?'  각각의 team에 맞는 member들도 전부 찾음
-            // select team쿼리한번,  team개수만큼  select member ..where team.id=member.team_id 쿼리 N 번
-
-            //지연로딩을 하면 바로 N+1문제가 발생하지는 않지만, list를 반복하면 역시 N번 쿼리 실행
-            for (Team team : findTeams) {
-                System.out.println(team.getMembers());
-            }
-            //기본적으로 개발할 때는 다 지연로딩 설정 후 나중에 정말 필요한 곳에는 즉시로딩 or  JPQL에 조인쿼리 사용 등
-
-
-            em.flush();
-            em.clear();
-            //다대일관계에서도 발생한다.
-            System.out.println("----------------------------------------------");
-            List<Member> members = em.createQuery("select m FROM Member m", Member.class).getResultList();
+            List<MemberDTO> memberDTOs = em.createQuery("SELECT new dto.MemberDTO(m.id,m.name) FROM Member m ", MemberDTO.class).getResultList();
+            System.out.println(memberDTOs);
+            //풀 패키지명을 다 써야돼서 난 잘 안쓰고 DTO,ENTITY에 from, to of 메소드 등을 정확히 만드는 편
+            //그래도 DTO만들필요없고 간단한 경우 new 사용해야할 일이 있음.
 
 
 

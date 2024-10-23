@@ -1,5 +1,6 @@
 package entity;
 
+import dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -18,12 +19,12 @@ public class Member  extends  BaseEnntity{
     @Column(name = "member_id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)   //즉시로딩할 때 fetch추가 , 지연로딩=LAZY
+    @ManyToOne()   //즉시로딩할 때 fetch추가 , 지연로딩=LAZY
     @JoinColumn(name = "team_id")
     private Team team;
 
 
-    @Column(nullable = false, length =10 )
+    @Column(nullable = false, length =30 )
     private String name;
     @Deprecated
     private String grade;
@@ -33,10 +34,8 @@ public class Member  extends  BaseEnntity{
     private  Authority authority;
     LocalDateTime createDate;
 
-
     @Embedded
     private Address address;
-
 
     public void setTeam(Team team){  //연관관계 편의 메소드
         if(this.team!=null){
@@ -49,6 +48,10 @@ public class Member  extends  BaseEnntity{
     public Member(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public MemberDTO toMemberDTO(){
+        return new MemberDTO(id,name);
     }
 
 
