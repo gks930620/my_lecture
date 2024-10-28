@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<!-- Header Section -->
+<header class="bg-white">
+    <div class="mx-auto flex h-20 max-w-screen-xl items-center justify-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a class="block text-teal-600" href="#">
+            <span class="sr-only">Home</span>
+            <svg class="h-10" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="..." fill="currentColor" />
+            </svg>
+        </a>
+
+        <nav aria-label="Global" class="hidden md:block">
+            <ul class="flex items-center gap-8 text-lg font-bold">
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-600/75" href=/members"> 회원리스트 </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-600/75" href="#"> 전체주문리스트 </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-600/75" href="#"> 상품목록 </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center bg-no-repeat h-[600px] mx-6 sm:mx-12 lg:mx-16">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold sm:text-5xl">Welcome to JPA Book Store</h1>
+
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

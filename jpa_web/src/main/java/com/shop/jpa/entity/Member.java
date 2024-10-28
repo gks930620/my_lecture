@@ -2,12 +2,16 @@ package com.shop.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
+@ToString(exclude = "orders")
 public class Member {
 
     @Id

@@ -38,5 +38,11 @@ public class Order {
     private Address address;  //멤버의 address 그냥쓸건지,  아니면 배달주소는 따로할건지..
 
 
+    @Embedded
+    private OrderStatus orderStatus; //orderItem-delivery가 하나라도 complete라면 취소 못함
+    //배달료나 구매금액때문에 보통 order에서 취소 관리.
+    // 편의점에서 한번에 구매한 품목들도 개별물품에 대해 환불이 안되는것처럼.
+
+
 
 }

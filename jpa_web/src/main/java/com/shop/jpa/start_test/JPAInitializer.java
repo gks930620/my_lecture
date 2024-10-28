@@ -1,5 +1,7 @@
 package com.shop.jpa.start_test;
 
+import com.shop.jpa.entity.Address;
+import com.shop.jpa.entity.Member;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,17 @@ public class JPAInitializer {
         try {
             tx.begin();
             TestEntity test = new TestEntity("test");
+
+            Member member=new Member();
+            member.setId("m1");
+            member.setName("민지");
+            member.setPassword("1004");
+            member.setAddress(new Address("대전","전민길41","33333",""));
+            
+
+
+
+            em.persist(member);
             em.persist(test);
             tx.commit();
         } catch (Exception e) {
