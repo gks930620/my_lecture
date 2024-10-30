@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<table >
+    <tr th:each="item : ${items}">
+        <td th:text="${item}"> </td>
+    </tr>
+</table>
+
+</body>
+
+</html>

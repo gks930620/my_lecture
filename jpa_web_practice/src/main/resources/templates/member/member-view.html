@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div th:text="${member}"> </div>
+<table>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order}"> </td>
+    </tr>
+</table>
+</body>
+
+</html>
