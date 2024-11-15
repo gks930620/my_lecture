@@ -1,6 +1,8 @@
 package com.shop.jpa.entity;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Delivery {
+
+    @Enumerated(EnumType.STRING)
     private  DeliveryStatus deliveryStatus;
     private LocalDate arriveDate;
 }

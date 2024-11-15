@@ -4,5 +4,5 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public enum OrderStatus {
-    READY,PROGRESS,CANCEL, COMPLETE
+    READY,CANCEL, COMPLETE   //READY일 때 수량감소, cancel하면 수량 원래대로
 }

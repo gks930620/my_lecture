@@ -2,6 +2,7 @@ package com.shop.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,7 +13,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(exclude = "orders")
+@NoArgsConstructor
 public class Member {
+
+    public Member(String id, String password, String name) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+    }
 
     @Id
     @Column(name = "member_id")
@@ -20,16 +28,9 @@ public class Member {
     private String password;
     private  String name;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member" , fetch = FetchType.LAZY)
     private List<Order> orders=new ArrayList<>();
 
-    @Embedded
-    private Address address;
 
-
-    public void modifyNameAndPassword(Member member){
-        this.name=member.getName();
-        this.password=member.getPassword();
-    }
 
 }

@@ -2,7 +2,9 @@ package com.shop.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,9 +12,12 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "ORDERS")
+@NoArgsConstructor
+@ToString(exclude = {"member", "orderItems"})
 public class Order {
-
+    //상품이 한번에 도착한다고 가정합시다.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
@@ -22,32 +27,39 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public void setMember(Member member) {
-        if(this.member!=null){
-            this.member.getOrders().remove(this);  //기존 연관관계 제거
-            member.getOrders().add(this);
-            this.member = member;
-        }
-    }
+    private int totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems=new ArrayList<>();
 
-    private int totalPrice;   //넣을 때 잘 넣으면 됨.
-    private LocalDate orderDate;
 
-    @Embedded
-    @Setter
-    private Address address;  //멤버의 address 그냥쓸건지,  아니면 배달주소는 따로할건지..
-
-
-    @Embedded
-    @Setter
-    private OrderStatus orderStatus; //orderItem-delivery가 하나라도 complete라면 취소 못함
-    //배달료나 구매금액때문에 보통 order에서 취소 관리.
-    // 편의점에서 한번에 구매한 품목들도 개별물품에 대해 환불이 안되는것처럼.
+    public void setMember(Member member){
+        if( this.member!=null){
+            this.member.getOrders().remove(this);
+        }
+        this.member=member;
+        this.member.getOrders().add(this);
+    }
 
 
+    public void goOrder() {
+        this.orderStatus=OrderStatus.READY;
+        for(OrderItem orderItem : orderItems){
+            Item item = orderItem.getItem();
+            item.removeStock(orderItem.getCount());
+            this.totalPrice+= orderItem.getCount()*item.getRegularPrice();
+        }
+    }
 
+    public void cancel(){
+        this.orderStatus=OrderStatus.CANCEL;
+        for(OrderItem orderItem : orderItems){
+            Item item = orderItem.getItem();
+            item.addStock(orderItem.getCount());
+        }
+    }
 
 }

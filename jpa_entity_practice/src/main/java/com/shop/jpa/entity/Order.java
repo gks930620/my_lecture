@@ -41,7 +41,7 @@ public class Order {
     private Address address;  //멤버의 address 그냥쓸건지,  아니면 배달주소는 따로할건지..
 
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     @Setter
     private OrderStatus orderStatus; //orderItem-delivery가 하나라도 complete라면 취소 못함
     //배달료나 구매금액때문에 보통 order에서 취소 관리.
